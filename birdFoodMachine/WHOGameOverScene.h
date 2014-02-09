@@ -10,6 +10,6 @@
 
 @interface WHOGameOverScene : SKScene
 
--(id)initWithSize:(CGSize)size won:(BOOL)won;
+-(id)initWithSize:(CGSize)size won:(BOOL)won finalScore:(int) score;
 
 @end

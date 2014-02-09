@@ -10,4 +10,6 @@
 
 @interface WHOMyScene : SKScene
 
+@property (strong, nonatomic) IBOutlet SKLabelNode* scoreLabel;
+
 @end

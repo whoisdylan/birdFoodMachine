@@ -11,35 +11,55 @@
 
 @implementation WHOGameOverScene
 
--(id)initWithSize:(CGSize)size won:(BOOL)won {
+-(id)initWithSize:(CGSize)size won:(BOOL)won finalScore:(int)score {
     if (self = [super initWithSize:size]) {
         
-        // 1
-        self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+        self.backgroundColor = [SKColor colorWithRed:227.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0];
         
-        // 2
         NSString * message;
         if (won) {
             message = @"You Win!";
         } else {
-            message = @"You Lose :[";
+            message = @"You Goofed!";
         }
         
-        // 3
-        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        label.text = message;
-        label.fontSize = 40;
-        label.fontColor = [SKColor blackColor];
-        label.position = CGPointMake(self.size.width/2, self.size.height/2);
-        [self addChild:label];
+        SKLabelNode *endLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        endLabel.text = message;
+        endLabel.fontSize = 40;
+        endLabel.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1.0];
+        endLabel.position = CGPointMake(self.size.width/2, self.size.height-self.size.height/3);
+        [self addChild:endLabel];
         
-        // 4
+        SKLabelNode *finalScoreLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        SKLabelNode *finalScoreLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        SKLabelNode *finalScoreLabel3 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        finalScoreLabel1.text = @"You dodged";
+        finalScoreLabel2.text = [NSString stringWithFormat:@"%d", score];
+        if (score == 1) {
+            finalScoreLabel3.text = @"thing";
+        }
+        else {
+            finalScoreLabel3.text = @"things";
+//            finalScoreLabel.text = [NSString stringWithFormat:@"You dodged \n %d \n gross things", score];
+        }
+        finalScoreLabel1.fontSize = 30;
+        finalScoreLabel2.fontSize = 30;
+        finalScoreLabel3.fontSize = 30;
+        finalScoreLabel1.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1];
+        finalScoreLabel2.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1];
+        finalScoreLabel3.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1];
+        finalScoreLabel1.position = CGPointMake(self.size.width/2, self.size.height/3+2*finalScoreLabel1.fontSize);
+        finalScoreLabel2.position = CGPointMake(self.size.width/2, self.size.height/3+finalScoreLabel1.fontSize);
+        finalScoreLabel3.position = CGPointMake(self.size.width/2, self.size.height/3);
+        [self addChild:finalScoreLabel1];
+        [self addChild:finalScoreLabel2];
+        [self addChild:finalScoreLabel3];
+        
         [self runAction:
          [SKAction sequence:@[
                               [SKAction waitForDuration:3.0],
                               [SKAction runBlock:^{
-             // 5
-             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+             SKTransition *reveal = [SKTransition pushWithDirection:SKTransitionDirectionUp duration:0.5];
              SKScene* myScene = [[WHOMyScene alloc] initWithSize:self.size];
              [self.view presentScene:myScene transition: reveal];
          }]
