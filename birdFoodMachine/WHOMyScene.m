@@ -16,6 +16,7 @@
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) int foodDodged;
 @property (nonatomic) bool fingerOnScreen;
+@property (nonatomic) CGPoint baseFingerLocation;
 @end
 
 
@@ -142,9 +143,14 @@ static const uint32_t foodCat =  0x1 << 1;
     CGPoint touchLocation = [recognizer locationInView:recognizer.view];
     touchLocation = [self convertPointFromView:touchLocation];
     
-	if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
+	if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.fingerOnScreen = YES;
-        self.playerSprite.position = touchLocation;
+        self.baseFingerLocation = touchLocation;
+    }
+    else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        self.fingerOnScreen = YES;
+        self.playerSprite.position = CGPointMake(self.playerSprite.position.x-(self.baseFingerLocation.x-touchLocation.x),self.playerSprite.position.y-(self.baseFingerLocation.y-touchLocation.y));
+        self.baseFingerLocation = touchLocation;
     }
     //if player lifts finger, randomly drift their sprite
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
@@ -172,17 +178,25 @@ static const uint32_t foodCat =  0x1 << 1;
     self.randomDriftTimeInterval += timeSinceLast;
     self.lastSpawnTimeInterval += timeSinceLast;
     
-    if (self.randomDriftTimeInterval > .01) {
+    if (self.randomDriftTimeInterval > .02) {
         self.randomDriftTimeInterval = 0;
         if (!self.fingerOnScreen) {
-            CGFloat randomX = (CGFloat) (arc4random()%7) - 3;
-            CGFloat randomY = (CGFloat) (arc4random()%7) - 3;
+            CGFloat randomX = (CGFloat) (arc4random()%9)-4;
+            CGFloat randomY = (CGFloat) (arc4random()%9)-4;
             CGFloat newX = self.playerSprite.position.x+randomX;
             CGFloat newY = self.playerSprite.position.y+randomY;
-            if (newX < 0) newX = 0;
-            else if (newX > self.frame.size.width - (self.playerSprite.size.width/2)) newX = self.frame.size.width - (self.playerSprite.size.width/2);
-            if (newY < 0) newY = 0;
-            if (newY > self.frame.size.height - (self.playerSprite.size.height/2)) newX = self.frame.size.height - (self.playerSprite.size.height/2);
+            if (newX < 0) {
+                newX = self.playerSprite.size.width/2;
+            }
+            else if (newX > self.frame.size.width - (self.playerSprite.size.width/2)) {
+                newX = self.frame.size.width - (self.playerSprite.size.width/2);
+            }
+            if (newY < 0) {
+                newY = self.playerSprite.size.height/2;
+            }
+            else if (newY > self.frame.size.height - (self.playerSprite.size.height/2)) {
+                newY = self.frame.size.height - (self.playerSprite.size.height/2);
+            }
             self.playerSprite.position = CGPointMake(newX, newY);
         }
     }
