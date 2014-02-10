@@ -142,20 +142,39 @@ static const uint32_t foodCat =  0x1 << 1;
 //    CGPoint prevTouchLocation = [recognizer previousLocationInView:recognizer.view];
     CGPoint touchLocation = [recognizer locationInView:recognizer.view];
     touchLocation = [self convertPointFromView:touchLocation];
+    CGPoint newPlayerPosition;
     
+    //check recognizer state
 	if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.fingerOnScreen = YES;
         self.baseFingerLocation = touchLocation;
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
         self.fingerOnScreen = YES;
-        self.playerSprite.position = CGPointMake(self.playerSprite.position.x-(self.baseFingerLocation.x-touchLocation.x),self.playerSprite.position.y-(self.baseFingerLocation.y-touchLocation.y));
+        newPlayerPosition = CGPointMake(self.playerSprite.position.x-2*(self.baseFingerLocation.x-touchLocation.x),self.playerSprite.position.y-2*(self.baseFingerLocation.y-touchLocation.y));
         self.baseFingerLocation = touchLocation;
+        
+        //bounds checking on sprite position so it can't leave screen because that would be cheating!
+        if (newPlayerPosition.x < self.playerSprite.size.width/2) {
+            newPlayerPosition.x = self.playerSprite.size.width/2;
+        }
+        else if (newPlayerPosition.x > self.frame.size.width - (self.playerSprite.size.width/2)) {
+            newPlayerPosition.x = self.frame.size.width - (self.playerSprite.size.width/2);
+        }
+        if (newPlayerPosition.y < self.playerSprite.size.height/2) {
+            newPlayerPosition.y = self.playerSprite.size.height/2;
+        }
+        else if (newPlayerPosition.y > self.frame.size.height - (self.playerSprite.size.height/2)) {
+            newPlayerPosition.y = self.frame.size.height - (self.playerSprite.size.height/2);
+        }
+        self.playerSprite.position = newPlayerPosition;
     }
     //if player lifts finger, randomly drift their sprite
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
         self.fingerOnScreen = NO;
     }
+    
+
 }
 
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -185,13 +204,13 @@ static const uint32_t foodCat =  0x1 << 1;
             CGFloat randomY = (CGFloat) (arc4random()%9)-4;
             CGFloat newX = self.playerSprite.position.x+randomX;
             CGFloat newY = self.playerSprite.position.y+randomY;
-            if (newX < 0) {
+            if (newX < self.playerSprite.size.width/2) {
                 newX = self.playerSprite.size.width/2;
             }
             else if (newX > self.frame.size.width - (self.playerSprite.size.width/2)) {
                 newX = self.frame.size.width - (self.playerSprite.size.width/2);
             }
-            if (newY < 0) {
+            if (newY < self.playerSprite.size.height/2) {
                 newY = self.playerSprite.size.height/2;
             }
             else if (newY > self.frame.size.height - (self.playerSprite.size.height/2)) {
