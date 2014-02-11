@@ -24,16 +24,23 @@
             message = @"You Goofed!";
         }
         
-        SKLabelNode *endLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        //save high score in a plist, need to make this secure
+        NSInteger lastHighScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"];
+        if (score > lastHighScore) {
+            [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"highScore"];
+            lastHighScore = score;
+        }
+        
+        SKLabelNode* endLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         endLabel.text = message;
         endLabel.fontSize = 40;
         endLabel.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1.0];
-        endLabel.position = CGPointMake(self.size.width/2, self.size.height-self.size.height/3);
+        endLabel.position = CGPointMake(self.size.width/2, self.size.height-self.size.height/4);
         [self addChild:endLabel];
         
-        SKLabelNode *finalScoreLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        SKLabelNode *finalScoreLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        SKLabelNode *finalScoreLabel3 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        SKLabelNode* finalScoreLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        SKLabelNode* finalScoreLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        SKLabelNode* finalScoreLabel3 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         finalScoreLabel1.text = @"You dodged";
         finalScoreLabel2.text = [NSString stringWithFormat:@"%d", score];
         if (score == 1) {
@@ -55,6 +62,13 @@
         [self addChild:finalScoreLabel1];
         [self addChild:finalScoreLabel2];
         [self addChild:finalScoreLabel3];
+        
+        SKLabelNode* highScoreLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        highScoreLabel1.text = [NSString stringWithFormat:@"High score: %d", lastHighScore];
+        highScoreLabel1.fontSize = 28;
+        highScoreLabel1.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1];
+        highScoreLabel1.position = CGPointMake(self.size.width/2, self.size.height/5);
+        [self addChild:highScoreLabel1];
         
 //        [self runAction:
 //         [SKAction sequence:@[
