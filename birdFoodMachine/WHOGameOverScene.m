@@ -8,6 +8,7 @@
 
 #import "WHOGameOverScene.h"
 #import "WHOMyScene.h"
+#import "WHOStartMenuScene.h"
 
 @implementation WHOGameOverScene
 
@@ -55,19 +56,29 @@
         [self addChild:finalScoreLabel2];
         [self addChild:finalScoreLabel3];
         
-        [self runAction:
-         [SKAction sequence:@[
-                              [SKAction waitForDuration:3.0],
-                              [SKAction runBlock:^{
-             SKTransition *reveal = [SKTransition pushWithDirection:SKTransitionDirectionUp duration:0.5];
-             SKScene* myScene = [[WHOMyScene alloc] initWithSize:self.size];
-             [self.view presentScene:myScene transition: reveal];
-         }]
-                              ]]
-         ];
+//        [self runAction:
+//         [SKAction sequence:@[
+//                              [SKAction waitForDuration:3.0],
+//                              [SKAction runBlock:^{
+//             SKTransition *reveal = [SKTransition pushWithDirection:SKTransitionDirectionUp duration:0.5];
+//             SKScene* myScene = [[WHOStartMenuScene alloc] initWithSize:self.size];
+//             [self.view presentScene:myScene transition: reveal];
+//         }]
+//                              ]]
+//         ];
         
     }
     return self;
+}
+
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//    UITouch* touch = [touches anyObject];
+//    CGPoint location = [touch locationInNode:self];
+    
+    //if screen touched, go to start screen
+    SKTransition *reveal = [SKTransition pushWithDirection:SKTransitionDirectionUp duration:0.5];
+    SKScene* startScene = [[WHOStartMenuScene alloc] initWithSize:self.size];
+    [self.view presentScene:startScene transition: reveal];
 }
 
 @end

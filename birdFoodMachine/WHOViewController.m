@@ -7,7 +7,7 @@
 //
 
 #import "WHOViewController.h"
-#import "WHOMyScene.h"
+#import "WHOStartMenuScene.h"
 
 @implementation WHOViewController
 
@@ -21,7 +21,7 @@
 //    skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene* scene = [WHOMyScene sceneWithSize:skView.bounds.size];
+    SKScene* scene = [WHOStartMenuScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -30,7 +30,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 - (NSUInteger)supportedInterfaceOrientations

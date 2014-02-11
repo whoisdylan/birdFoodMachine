@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC0E069F18AAACF900F7A331 /* WHOStartMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0E069E18AAACF900F7A331 /* WHOStartMenuScene.m */; };
 		FCDEDA6D18A7405500BCB53C /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6A18A7405500BCB53C /* background-music-aac.caf */; };
 		FCDEDA6E18A7405500BCB53C /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6B18A7405500BCB53C /* pew-pew-lei.caf */; };
 		FCDEDA6F18A7405500BCB53C /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6C18A7405500BCB53C /* sprites.atlas */; };
@@ -18,16 +19,15 @@
 		FCE57DBB18A73AA50049C90C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DB918A73AA50049C90C /* InfoPlist.strings */; };
 		FCE57DBD18A73AA50049C90C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DBC18A73AA50049C90C /* main.m */; };
 		FCE57DC118A73AA50049C90C /* WHOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DC018A73AA50049C90C /* WHOAppDelegate.m */; };
-		FCE57DC418A73AA50049C90C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DC218A73AA50049C90C /* Main.storyboard */; };
 		FCE57DC718A73AA50049C90C /* WHOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DC618A73AA50049C90C /* WHOViewController.m */; };
 		FCE57DCA18A73AA50049C90C /* WHOMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DC918A73AA50049C90C /* WHOMyScene.m */; };
-		FCE57DCC18A73AA50049C90C /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DCB18A73AA50049C90C /* Spaceship.png */; };
 		FCE57DCE18A73AA50049C90C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DCD18A73AA50049C90C /* Images.xcassets */; };
 		FCE57DD518A73AA50049C90C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE57DD418A73AA50049C90C /* XCTest.framework */; };
 		FCE57DD618A73AA50049C90C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE57DAE18A73AA50049C90C /* Foundation.framework */; };
 		FCE57DD718A73AA50049C90C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE57DB218A73AA50049C90C /* UIKit.framework */; };
 		FCE57DDF18A73AA50049C90C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DDD18A73AA50049C90C /* InfoPlist.strings */; };
 		FCE57DE118A73AA50049C90C /* birdFoodMachineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DE018A73AA50049C90C /* birdFoodMachineTests.m */; };
+		FCED033018AAAB2C00C8E349 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DC218A73AA50049C90C /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC0E069D18AAACF900F7A331 /* WHOStartMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHOStartMenuScene.h; sourceTree = "<group>"; };
+		FC0E069E18AAACF900F7A331 /* WHOStartMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHOStartMenuScene.m; sourceTree = "<group>"; };
 		FCDEDA6A18A7405500BCB53C /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		FCDEDA6B18A7405500BCB53C /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		FCDEDA6C18A7405500BCB53C /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 		FCE57DC618A73AA50049C90C /* WHOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOViewController.m; sourceTree = "<group>"; };
 		FCE57DC818A73AA50049C90C /* WHOMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHOMyScene.h; sourceTree = "<group>"; };
 		FCE57DC918A73AA50049C90C /* WHOMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOMyScene.m; sourceTree = "<group>"; };
-		FCE57DCB18A73AA50049C90C /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		FCE57DCD18A73AA50049C90C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FCE57DD318A73AA50049C90C /* birdFoodMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = birdFoodMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE57DD418A73AA50049C90C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -144,11 +145,12 @@
 				FCE57DC218A73AA50049C90C /* Main.storyboard */,
 				FCE57DC518A73AA50049C90C /* WHOViewController.h */,
 				FCE57DC618A73AA50049C90C /* WHOViewController.m */,
+				FC0E069D18AAACF900F7A331 /* WHOStartMenuScene.h */,
+				FC0E069E18AAACF900F7A331 /* WHOStartMenuScene.m */,
 				FCE57DC818A73AA50049C90C /* WHOMyScene.h */,
 				FCE57DC918A73AA50049C90C /* WHOMyScene.m */,
 				FCDEDA7018A74EB500BCB53C /* WHOGameOverScene.h */,
 				FCDEDA7118A74EB500BCB53C /* WHOGameOverScene.m */,
-				FCE57DCB18A73AA50049C90C /* Spaceship.png */,
 				FCE57DCD18A73AA50049C90C /* Images.xcassets */,
 				FCE57DB718A73AA50049C90C /* Supporting Files */,
 			);
@@ -267,8 +269,7 @@
 				FCDEDA6D18A7405500BCB53C /* background-music-aac.caf in Resources */,
 				FCE57DBB18A73AA50049C90C /* InfoPlist.strings in Resources */,
 				FCE57DCE18A73AA50049C90C /* Images.xcassets in Resources */,
-				FCE57DCC18A73AA50049C90C /* Spaceship.png in Resources */,
-				FCE57DC418A73AA50049C90C /* Main.storyboard in Resources */,
+				FCED033018AAAB2C00C8E349 /* Main.storyboard in Resources */,
 				FCDEDA6E18A7405500BCB53C /* pew-pew-lei.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +292,7 @@
 				FCE57DC718A73AA50049C90C /* WHOViewController.m in Sources */,
 				FCE57DCA18A73AA50049C90C /* WHOMyScene.m in Sources */,
 				FCDEDA7218A74EB500BCB53C /* WHOGameOverScene.m in Sources */,
+				FC0E069F18AAACF900F7A331 /* WHOStartMenuScene.m in Sources */,
 				FCE57DBD18A73AA50049C90C /* main.m in Sources */,
 				FCE57DC118A73AA50049C90C /* WHOAppDelegate.m in Sources */,
 			);
