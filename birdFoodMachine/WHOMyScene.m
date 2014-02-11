@@ -8,13 +8,16 @@
 
 #import "WHOMyScene.h"
 #import "WHOGameOverScene.h"
+#import "WHONextLevelScene.h"
 
 @interface WHOMyScene () <SKPhysicsContactDelegate>
 @property (nonatomic) SKSpriteNode* playerSprite;
 @property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property (nonatomic) NSTimeInterval randomDriftTimeInterval;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-@property (nonatomic) int foodDodged;
+@property (nonatomic) NSInteger foodDodgedTotal;
+@property (nonatomic) NSInteger foodDodgedThisLevel;
+@property (nonatomic) NSInteger level;
 @property (nonatomic) bool fingerOnScreen;
 @property (nonatomic) CGPoint baseFingerLocation;
 @end
@@ -25,7 +28,7 @@ static const uint32_t foodCat =  0x1 << 1;
 
 @implementation WHOMyScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size foodDodged:(NSInteger) foodDodged level:(NSInteger) level {
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
@@ -43,6 +46,9 @@ static const uint32_t foodCat =  0x1 << 1;
         [self addChild:self.playerSprite];
         self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
+        
+        self.level = level;
+        self.foodDodgedTotal = foodDodged;
     }
     return self;
 }
@@ -53,7 +59,7 @@ static const uint32_t foodCat =  0x1 << 1;
     
     //add score label
     self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Lato"];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.foodDodged];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.foodDodgedThisLevel];
     self.scoreLabel.fontSize = 16;
     self.scoreLabel.fontColor = [SKColor blackColor];
     self.scoreLabel.position = CGPointMake(self.size.width/12, self.size.height - self.size.height/12);
@@ -96,8 +102,21 @@ static const uint32_t foodCat =  0x1 << 1;
 //        [weakSelf.view presentScene:gameOverScene transition: reveal];
 //    }];
     SKAction* incrementScore = [SKAction runBlock:^{
-        self.foodDodged += 1;
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.foodDodged];
+        self.foodDodgedThisLevel += 1;
+        self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.foodDodgedThisLevel];
+        
+        //check if it's time to go to the next level
+        if (self.foodDodgedThisLevel >= 5) {
+            __weak typeof(self) weakSelf = self;
+            self.foodDodgedTotal += self.foodDodgedThisLevel;
+            self.level += 1;
+            SKTransition* reveal = [SKTransition pushWithDirection:SKTransitionDirectionLeft duration:0.5];
+            SKScene* gameOverScene = [[WHONextLevelScene alloc] initWithSize:weakSelf.size foodDodged:self.foodDodgedTotal level:self.level];
+            UIPanGestureRecognizer* gestureRecognizer = self.view.gestureRecognizers.firstObject;
+            [[self view] removeGestureRecognizer:gestureRecognizer];
+            [weakSelf.view presentScene:gameOverScene transition: reveal];
+        }
+        
     }];
     [foodSprite runAction:[SKAction sequence:@[actionMove, incrementScore, actionMoveDone]]];
     
@@ -125,11 +144,11 @@ static const uint32_t foodCat =  0x1 << 1;
 }
 
 - (void)player:(SKSpriteNode *)playerSprite didCollideWithFood:(SKSpriteNode *)foodSprite {
-    NSLog(@"Hit");
     [playerSprite removeFromParent];
     [foodSprite removeFromParent];
     SKTransition* reveal = [SKTransition pushWithDirection:SKTransitionDirectionDown duration:0.5];
-    SKScene* gameOverScene = [[WHOGameOverScene alloc] initWithSize:self.size won:NO finalScore:self.foodDodged];
+    self.foodDodgedTotal += self.foodDodgedThisLevel;
+    SKScene* gameOverScene = [[WHOGameOverScene alloc] initWithSize:self.size won:NO finalScore:self.foodDodgedTotal];
     UIPanGestureRecognizer* gestureRecognizer = self.view.gestureRecognizers.firstObject;
     [[self view] removeGestureRecognizer:gestureRecognizer];
     [self.view presentScene:gameOverScene transition: reveal];
@@ -219,6 +238,9 @@ static const uint32_t foodCat =  0x1 << 1;
             self.playerSprite.position = CGPointMake(newX, newY);
         }
     }
+    
+    //go to next level
+
     if (self.lastSpawnTimeInterval > 1) {
         self.lastSpawnTimeInterval = 0;
         [self addFood];

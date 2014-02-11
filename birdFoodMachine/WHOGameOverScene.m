@@ -17,7 +17,7 @@
         
         self.backgroundColor = [SKColor colorWithRed:227.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0];
         
-        NSString * message;
+        NSString* message;
         if (won) {
             message = @"You Win!";
         } else {
@@ -90,7 +90,7 @@
 //    CGPoint location = [touch locationInNode:self];
     
     //if screen touched, go to start screen
-    SKTransition *reveal = [SKTransition pushWithDirection:SKTransitionDirectionUp duration:0.5];
+    SKTransition* reveal = [SKTransition pushWithDirection:SKTransitionDirectionUp duration:0.5];
     SKScene* startScene = [[WHOStartMenuScene alloc] initWithSize:self.size];
     [self.view presentScene:startScene transition: reveal];
 }

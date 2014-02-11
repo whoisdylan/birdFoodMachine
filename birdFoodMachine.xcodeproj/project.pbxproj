@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC0E069F18AAACF900F7A331 /* WHOStartMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0E069E18AAACF900F7A331 /* WHOStartMenuScene.m */; };
+		FC0E06A218AAC09100F7A331 /* WHONextLevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0E06A118AAC09100F7A331 /* WHONextLevelScene.m */; };
 		FCDEDA6D18A7405500BCB53C /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6A18A7405500BCB53C /* background-music-aac.caf */; };
 		FCDEDA6E18A7405500BCB53C /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6B18A7405500BCB53C /* pew-pew-lei.caf */; };
 		FCDEDA6F18A7405500BCB53C /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6C18A7405500BCB53C /* sprites.atlas */; };
@@ -43,6 +44,8 @@
 /* Begin PBXFileReference section */
 		FC0E069D18AAACF900F7A331 /* WHOStartMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHOStartMenuScene.h; sourceTree = "<group>"; };
 		FC0E069E18AAACF900F7A331 /* WHOStartMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHOStartMenuScene.m; sourceTree = "<group>"; };
+		FC0E06A018AAC09100F7A331 /* WHONextLevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHONextLevelScene.h; sourceTree = "<group>"; };
+		FC0E06A118AAC09100F7A331 /* WHONextLevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHONextLevelScene.m; sourceTree = "<group>"; };
 		FCDEDA6A18A7405500BCB53C /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		FCDEDA6B18A7405500BCB53C /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		FCDEDA6C18A7405500BCB53C /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				FC0E069E18AAACF900F7A331 /* WHOStartMenuScene.m */,
 				FCE57DC818A73AA50049C90C /* WHOMyScene.h */,
 				FCE57DC918A73AA50049C90C /* WHOMyScene.m */,
+				FC0E06A018AAC09100F7A331 /* WHONextLevelScene.h */,
+				FC0E06A118AAC09100F7A331 /* WHONextLevelScene.m */,
 				FCDEDA7018A74EB500BCB53C /* WHOGameOverScene.h */,
 				FCDEDA7118A74EB500BCB53C /* WHOGameOverScene.m */,
 				FCE57DCD18A73AA50049C90C /* Images.xcassets */,
@@ -290,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCE57DC718A73AA50049C90C /* WHOViewController.m in Sources */,
+				FC0E06A218AAC09100F7A331 /* WHONextLevelScene.m in Sources */,
 				FCE57DCA18A73AA50049C90C /* WHOMyScene.m in Sources */,
 				FCDEDA7218A74EB500BCB53C /* WHOGameOverScene.m in Sources */,
 				FC0E069F18AAACF900F7A331 /* WHOStartMenuScene.m in Sources */,

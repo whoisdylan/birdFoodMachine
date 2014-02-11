@@ -7,7 +7,7 @@
 //
 
 #import "WHOStartMenuScene.h"
-#import "WHOMyScene.h"
+#import "WHONextLevelScene.h"
 
 @implementation WHOStartMenuScene
 
@@ -52,7 +52,7 @@
     //check if playButton node was touched
     if ([touchedNode.name isEqualToString:@"playButton"]) {
         SKTransition *reveal = [SKTransition fadeWithColor:[SKColor colorWithRed:108.0/255.0 green:172.0/255.0 blue:212.0/255.0 alpha:1] duration:1.0];
-        SKScene* myScene = [[WHOMyScene alloc] initWithSize:self.size];
+        SKScene* myScene = [[WHONextLevelScene alloc] initWithSize:self.size foodDodged:0 level:1];
         [self.view presentScene:myScene transition: reveal];
     }
 }
