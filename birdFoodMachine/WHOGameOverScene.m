@@ -62,9 +62,7 @@
              SKTransition *reveal = [SKTransition pushWithDirection:SKTransitionDirectionUp duration:0.5];
              SKScene* myScene = [[WHOMyScene alloc] initWithSize:self.size];
              [self.view presentScene:myScene transition: reveal];
-         }]
-                              ]]
-         ];
+         }]]]];
         
     }
     return self;

@@ -8,11 +8,17 @@
 
 #import "WHOAppDelegate.h"
 
+#import "WHOStartViewController.h"
+
 @implementation WHOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    WHOStartViewController* startViewController = [[WHOStartViewController alloc] initWithNibName:@"WHOStartViewController" bundle:nil];
+    self.window.rootViewController = startViewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 							
