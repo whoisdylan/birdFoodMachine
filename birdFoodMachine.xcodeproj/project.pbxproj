@@ -11,10 +11,6 @@
 		FCDEDA6E18A7405500BCB53C /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6B18A7405500BCB53C /* pew-pew-lei.caf */; };
 		FCDEDA6F18A7405500BCB53C /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA6C18A7405500BCB53C /* sprites.atlas */; };
 		FCDEDA7218A74EB500BCB53C /* WHOGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDEDA7118A74EB500BCB53C /* WHOGameOverScene.m */; };
-		FCDEDA7F18A9A98700BCB53C /* WHOStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA7D18A9A98700BCB53C /* WHOStartViewController.xib */; };
-		FCDEDA8518A9D35800BCB53C /* WHOGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA8418A9D35800BCB53C /* WHOGameView.xib */; };
-		FCDEDA8918A9D38F00BCB53C /* WHOGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDEDA8718A9D38F00BCB53C /* WHOGameViewController.m */; };
-		FCDEDA8A18A9D38F00BCB53C /* WHOGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDEDA8818A9D38F00BCB53C /* WHOGameViewController.xib */; };
 		FCE57DAF18A73AA50049C90C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE57DAE18A73AA50049C90C /* Foundation.framework */; };
 		FCE57DB118A73AA50049C90C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE57DB018A73AA50049C90C /* CoreGraphics.framework */; };
 		FCE57DB318A73AA50049C90C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE57DB218A73AA50049C90C /* UIKit.framework */; };
@@ -22,7 +18,8 @@
 		FCE57DBB18A73AA50049C90C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DB918A73AA50049C90C /* InfoPlist.strings */; };
 		FCE57DBD18A73AA50049C90C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DBC18A73AA50049C90C /* main.m */; };
 		FCE57DC118A73AA50049C90C /* WHOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DC018A73AA50049C90C /* WHOAppDelegate.m */; };
-		FCE57DC718A73AA50049C90C /* WHOStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DC618A73AA50049C90C /* WHOStartViewController.m */; };
+		FCE57DC418A73AA50049C90C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DC218A73AA50049C90C /* Main.storyboard */; };
+		FCE57DC718A73AA50049C90C /* WHOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DC618A73AA50049C90C /* WHOViewController.m */; };
 		FCE57DCA18A73AA50049C90C /* WHOMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE57DC918A73AA50049C90C /* WHOMyScene.m */; };
 		FCE57DCC18A73AA50049C90C /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DCB18A73AA50049C90C /* Spaceship.png */; };
 		FCE57DCE18A73AA50049C90C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCE57DCD18A73AA50049C90C /* Images.xcassets */; };
@@ -49,11 +46,6 @@
 		FCDEDA6C18A7405500BCB53C /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
 		FCDEDA7018A74EB500BCB53C /* WHOGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHOGameOverScene.h; sourceTree = "<group>"; };
 		FCDEDA7118A74EB500BCB53C /* WHOGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHOGameOverScene.m; sourceTree = "<group>"; };
-		FCDEDA7D18A9A98700BCB53C /* WHOStartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WHOStartViewController.xib; path = ../WHOStartViewController.xib; sourceTree = "<group>"; };
-		FCDEDA8418A9D35800BCB53C /* WHOGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHOGameView.xib; sourceTree = "<group>"; };
-		FCDEDA8618A9D38F00BCB53C /* WHOGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHOGameViewController.h; sourceTree = "<group>"; };
-		FCDEDA8718A9D38F00BCB53C /* WHOGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHOGameViewController.m; sourceTree = "<group>"; };
-		FCDEDA8818A9D38F00BCB53C /* WHOGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHOGameViewController.xib; sourceTree = "<group>"; };
 		FCE57DAB18A73AA50049C90C /* birdFoodMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = birdFoodMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE57DAE18A73AA50049C90C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FCE57DB018A73AA50049C90C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,8 +57,9 @@
 		FCE57DBE18A73AA50049C90C /* birdFoodMachine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "birdFoodMachine-Prefix.pch"; sourceTree = "<group>"; };
 		FCE57DBF18A73AA50049C90C /* WHOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHOAppDelegate.h; sourceTree = "<group>"; };
 		FCE57DC018A73AA50049C90C /* WHOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOAppDelegate.m; sourceTree = "<group>"; };
-		FCE57DC518A73AA50049C90C /* WHOStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHOStartViewController.h; sourceTree = "<group>"; };
-		FCE57DC618A73AA50049C90C /* WHOStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOStartViewController.m; sourceTree = "<group>"; };
+		FCE57DC318A73AA50049C90C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FCE57DC518A73AA50049C90C /* WHOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHOViewController.h; sourceTree = "<group>"; };
+		FCE57DC618A73AA50049C90C /* WHOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOViewController.m; sourceTree = "<group>"; };
 		FCE57DC818A73AA50049C90C /* WHOMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHOMyScene.h; sourceTree = "<group>"; };
 		FCE57DC918A73AA50049C90C /* WHOMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOMyScene.m; sourceTree = "<group>"; };
 		FCE57DCB18A73AA50049C90C /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
@@ -148,13 +141,9 @@
 			children = (
 				FCE57DBF18A73AA50049C90C /* WHOAppDelegate.h */,
 				FCE57DC018A73AA50049C90C /* WHOAppDelegate.m */,
-				FCDEDA7D18A9A98700BCB53C /* WHOStartViewController.xib */,
-				FCE57DC518A73AA50049C90C /* WHOStartViewController.h */,
-				FCE57DC618A73AA50049C90C /* WHOStartViewController.m */,
-				FCDEDA8618A9D38F00BCB53C /* WHOGameViewController.h */,
-				FCDEDA8718A9D38F00BCB53C /* WHOGameViewController.m */,
-				FCDEDA8818A9D38F00BCB53C /* WHOGameViewController.xib */,
-				FCDEDA8418A9D35800BCB53C /* WHOGameView.xib */,
+				FCE57DC218A73AA50049C90C /* Main.storyboard */,
+				FCE57DC518A73AA50049C90C /* WHOViewController.h */,
+				FCE57DC618A73AA50049C90C /* WHOViewController.m */,
 				FCE57DC818A73AA50049C90C /* WHOMyScene.h */,
 				FCE57DC918A73AA50049C90C /* WHOMyScene.m */,
 				FCDEDA7018A74EB500BCB53C /* WHOGameOverScene.h */,
@@ -277,11 +266,9 @@
 				FCDEDA6F18A7405500BCB53C /* sprites.atlas in Resources */,
 				FCDEDA6D18A7405500BCB53C /* background-music-aac.caf in Resources */,
 				FCE57DBB18A73AA50049C90C /* InfoPlist.strings in Resources */,
-				FCDEDA8A18A9D38F00BCB53C /* WHOGameViewController.xib in Resources */,
-				FCDEDA8518A9D35800BCB53C /* WHOGameView.xib in Resources */,
 				FCE57DCE18A73AA50049C90C /* Images.xcassets in Resources */,
 				FCE57DCC18A73AA50049C90C /* Spaceship.png in Resources */,
-				FCDEDA7F18A9A98700BCB53C /* WHOStartViewController.xib in Resources */,
+				FCE57DC418A73AA50049C90C /* Main.storyboard in Resources */,
 				FCDEDA6E18A7405500BCB53C /* pew-pew-lei.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,12 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCE57DC718A73AA50049C90C /* WHOStartViewController.m in Sources */,
+				FCE57DC718A73AA50049C90C /* WHOViewController.m in Sources */,
 				FCE57DCA18A73AA50049C90C /* WHOMyScene.m in Sources */,
 				FCDEDA7218A74EB500BCB53C /* WHOGameOverScene.m in Sources */,
 				FCE57DBD18A73AA50049C90C /* main.m in Sources */,
 				FCE57DC118A73AA50049C90C /* WHOAppDelegate.m in Sources */,
-				FCDEDA8918A9D38F00BCB53C /* WHOGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +321,14 @@
 				FCE57DBA18A73AA50049C90C /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FCE57DC218A73AA50049C90C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCE57DC318A73AA50049C90C /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		FCE57DDD18A73AA50049C90C /* InfoPlist.strings */ = {
