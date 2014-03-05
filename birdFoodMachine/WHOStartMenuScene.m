@@ -19,7 +19,7 @@
         //create title label
         self.titleLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         self.titleLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        self.titleLabel1.text =  @"Bird Game";
+        self.titleLabel1.text =  @"Bird Food";
         self.titleLabel2.text = @"Machine";
         self.titleLabel1.fontSize = 44;
         self.titleLabel2.fontSize = 44;

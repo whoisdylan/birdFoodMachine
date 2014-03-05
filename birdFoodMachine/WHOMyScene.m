@@ -34,7 +34,7 @@ static const uint32_t foodCat =  0x1 << 1;
         
         self.backgroundColor = [SKColor colorWithRed:108.0/255.0 green:172.0/255.0 blue:212.0/255.0 alpha:1];
         
-        self.playerSprite = [SKSpriteNode spriteNodeWithImageNamed:@"player"];
+        self.playerSprite = [SKSpriteNode spriteNodeWithImageNamed:@"bird"];
         self.playerSprite.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - self.playerSprite.size.height-20);
         self.playerSprite.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.playerSprite.size.width/2];
         self.playerSprite.physicsBody.dynamic = YES;
@@ -59,17 +59,17 @@ static const uint32_t foodCat =  0x1 << 1;
     
     //add score label
     self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Lato"];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.foodDodgedThisLevel];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)self.foodDodgedThisLevel];
     self.scoreLabel.fontSize = 16;
     self.scoreLabel.fontColor = [SKColor blackColor];
     self.scoreLabel.position = CGPointMake(self.size.width/12, self.size.height - self.size.height/12);
     [self addChild:self.scoreLabel];
 }
 
-- (void)addFood {
+- (int)addFoodWithoutPosition:(int) position {
     
     // Create sprite
-    SKSpriteNode* foodSprite = [SKSpriteNode spriteNodeWithImageNamed:@"monster"];
+    SKSpriteNode* foodSprite = [SKSpriteNode spriteNodeWithImageNamed:@"egg"];
     foodSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:foodSprite.size];
     foodSprite.physicsBody.dynamic = YES;
     foodSprite.physicsBody.categoryBitMask = foodCat;
@@ -78,7 +78,10 @@ static const uint32_t foodCat =  0x1 << 1;
     foodSprite.physicsBody.usesPreciseCollisionDetection = YES;
     
     int numFoodSpawns = self.frame.size.width/foodSprite.size.width - 1;
-    int chosenSpawn = ((arc4random() % numFoodSpawns) + 1)*foodSprite.size.width;
+    NSInteger chosenSpawn = ((arc4random() % numFoodSpawns) + 1)*foodSprite.size.width;
+    while (chosenSpawn == position) {
+        chosenSpawn = ((arc4random() % numFoodSpawns) + 1)*foodSprite.size.width;
+    }
     
     // Create the food slightly off-screen along the bottom edge,
     // and along a random position along the x axis as calculated above
@@ -90,7 +93,12 @@ static const uint32_t foodCat =  0x1 << 1;
 //    int maxDuration = 4.0;
 //    int rangeDuration = maxDuration - minDuration;
 //    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    
     int foodDuration = 3.0;
+    foodDuration -= (self.level/2);
+    if (foodDuration < 1) {
+        foodDuration = 1;
+    }
     
     // Create the actions
     SKAction* actionMove = [SKAction moveTo:CGPointMake(chosenSpawn, self.frame.size.height-foodSprite.size.height/2) duration:foodDuration];
@@ -103,10 +111,14 @@ static const uint32_t foodCat =  0x1 << 1;
 //    }];
     SKAction* incrementScore = [SKAction runBlock:^{
         self.foodDodgedThisLevel += 1;
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.foodDodgedThisLevel];
+        self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)self.foodDodgedThisLevel];
         
         //check if it's time to go to the next level
-        if (self.foodDodgedThisLevel >= 5) {
+        int foodRequired = 15;
+        if (self.level >= 4) {
+            foodRequired *= 2;
+        }
+        if (self.foodDodgedThisLevel >= foodRequired) {
             __weak typeof(self) weakSelf = self;
             self.foodDodgedTotal += self.foodDodgedThisLevel;
             self.level += 1;
@@ -119,7 +131,7 @@ static const uint32_t foodCat =  0x1 << 1;
         
     }];
     [foodSprite runAction:[SKAction sequence:@[actionMove, incrementScore, actionMoveDone]]];
-    
+    return chosenSpawn;
 }
 
 #pragma mark Physics
@@ -170,7 +182,7 @@ static const uint32_t foodCat =  0x1 << 1;
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
         self.fingerOnScreen = YES;
-        newPlayerPosition = CGPointMake(self.playerSprite.position.x-2*(self.baseFingerLocation.x-touchLocation.x),self.playerSprite.position.y-2*(self.baseFingerLocation.y-touchLocation.y));
+        newPlayerPosition = CGPointMake(self.playerSprite.position.x-1.5*(self.baseFingerLocation.x-touchLocation.x),self.playerSprite.position.y-1.5*(self.baseFingerLocation.y-touchLocation.y));
         self.baseFingerLocation = touchLocation;
         
         //bounds checking on sprite position so it can't leave screen because that would be cheating!
@@ -243,7 +255,10 @@ static const uint32_t foodCat =  0x1 << 1;
 
     if (self.lastSpawnTimeInterval > 1) {
         self.lastSpawnTimeInterval = 0;
-        [self addFood];
+        int usedPosition = [self addFoodWithoutPosition:-1];
+        if (self.level >= 4) {
+            [self addFoodWithoutPosition:usedPosition];
+        }
     }
     
 }
