@@ -12,7 +12,7 @@
 
 @implementation WHOGameOverScene
 
--(id)initWithSize:(CGSize)size won:(BOOL)won finalScore:(int)score {
+-(id)initWithSize:(CGSize)size won:(BOOL)won finalScore:(NSInteger)score {
     if (self = [super initWithSize:size]) {
         
         self.backgroundColor = [SKColor colorWithRed:227.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1.0];
@@ -42,7 +42,7 @@
         SKLabelNode* finalScoreLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         SKLabelNode* finalScoreLabel3 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         finalScoreLabel1.text = @"You dodged";
-        finalScoreLabel2.text = [NSString stringWithFormat:@"%d", score];
+        finalScoreLabel2.text = [NSString stringWithFormat:@"%ld", (long)score];
         if (score == 1) {
             finalScoreLabel3.text = @"thing";
         }
@@ -64,7 +64,7 @@
         [self addChild:finalScoreLabel3];
         
         SKLabelNode* highScoreLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        highScoreLabel1.text = [NSString stringWithFormat:@"High score: %d", lastHighScore];
+        highScoreLabel1.text = [NSString stringWithFormat:@"High score: %ld", (long)lastHighScore];
         highScoreLabel1.fontSize = 28;
         highScoreLabel1.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1];
         highScoreLabel1.position = CGPointMake(self.size.width/2, self.size.height/5);

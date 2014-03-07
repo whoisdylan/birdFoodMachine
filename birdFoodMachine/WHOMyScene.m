@@ -66,49 +66,34 @@ static const uint32_t foodCat =  0x1 << 1;
     [self addChild:self.scoreLabel];
 }
 
-- (int)addFoodWithoutPosition:(int) position {
+- (BOOL)array:(NSMutableArray*) array ContainsInt:(NSInteger) targetInt {
+    for (int i = 0; i < array.count; i++) {
+        if ([[array objectAtIndex:i] integerValue] == targetInt) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)addFood:(NSInteger)numFood{
     
     // Create sprite
-    SKSpriteNode* foodSprite = [SKSpriteNode spriteNodeWithImageNamed:@"egg"];
-    foodSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:foodSprite.size];
-    foodSprite.physicsBody.dynamic = YES;
-    foodSprite.physicsBody.categoryBitMask = foodCat;
-    foodSprite.physicsBody.contactTestBitMask = playerCat;
-    foodSprite.physicsBody.collisionBitMask = 0;
-    foodSprite.physicsBody.usesPreciseCollisionDetection = YES;
+    SKSpriteNode* testSprite = [SKSpriteNode spriteNodeWithImageNamed:@"egg"];
+//    foodSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:foodSprite.size];
+//    foodSprite.physicsBody.dynamic = YES;
+//    foodSprite.physicsBody.categoryBitMask = foodCat;
+//    foodSprite.physicsBody.contactTestBitMask = playerCat;
+//    foodSprite.physicsBody.collisionBitMask = 0;
+//    foodSprite.physicsBody.usesPreciseCollisionDetection = YES;
     
-    int numFoodSpawns = self.frame.size.width/foodSprite.size.width - 1;
-    NSInteger chosenSpawn = ((arc4random() % numFoodSpawns) + 1)*foodSprite.size.width;
-    while (chosenSpawn == position) {
-        chosenSpawn = ((arc4random() % numFoodSpawns) + 1)*foodSprite.size.width;
-    }
+    int numFoodSpawns = self.frame.size.width/testSprite.size.width - 1;
     
-    // Create the food slightly off-screen along the bottom edge,
-    // and along a random position along the x axis as calculated above
-    foodSprite.position = CGPointMake(chosenSpawn, foodSprite.size.height/2);
-    [self addChild:foodSprite];
-    
-    // Determine speed of the monster
-//    int minDuration = 1.0;
-//    int maxDuration = 4.0;
-//    int rangeDuration = maxDuration - minDuration;
-//    int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    
-    int foodDuration = 3.0;
-    foodDuration -= (self.level/2);
-    if (foodDuration < 1) {
-        foodDuration = 1;
-    }
-    
-    // Create the actions
-    SKAction* actionMove = [SKAction moveTo:CGPointMake(chosenSpawn, self.frame.size.height-foodSprite.size.height/2) duration:foodDuration];
-    SKAction* actionMoveDone = [SKAction removeFromParent];
-//    __weak typeof(self) weakSelf = self;
-//    SKAction * loseAction = [SKAction runBlock:^{
-//        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-//        SKScene * gameOverScene = [[WHOGameOverScene alloc] initWithSize:weakSelf.size won:NO];
-//        [weakSelf.view presentScene:gameOverScene transition: reveal];
-//    }];
+    //    __weak typeof(self) weakSelf = self;
+    //    SKAction * loseAction = [SKAction runBlock:^{
+    //        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+    //        SKScene * gameOverScene = [[WHOGameOverScene alloc] initWithSize:weakSelf.size won:NO];
+    //        [weakSelf.view presentScene:gameOverScene transition: reveal];
+    //    }];
     SKAction* incrementScore = [SKAction runBlock:^{
         self.foodDodgedThisLevel += 1;
         self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)self.foodDodgedThisLevel];
@@ -130,8 +115,46 @@ static const uint32_t foodCat =  0x1 << 1;
         }
         
     }];
-    [foodSprite runAction:[SKAction sequence:@[actionMove, incrementScore, actionMoveDone]]];
-    return chosenSpawn;
+    
+    NSMutableArray *chosenSpawns = [NSMutableArray arrayWithCapacity:numFood];
+    
+    for (int i = 0; i < numFood; i++) {
+        SKSpriteNode* foodSprite = [SKSpriteNode spriteNodeWithImageNamed:@"egg"];
+        foodSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:foodSprite.size];
+        foodSprite.physicsBody.dynamic = YES;
+        foodSprite.physicsBody.categoryBitMask = foodCat;
+        foodSprite.physicsBody.contactTestBitMask = playerCat;
+        foodSprite.physicsBody.collisionBitMask = 0;
+        foodSprite.physicsBody.usesPreciseCollisionDetection = YES;
+        
+        NSInteger chosenSpawn = ((arc4random() % numFoodSpawns) + 1)*foodSprite.size.width;
+//        while ([array:chosenSpawns ContainsInt:chosenSpawn]) {
+        while ([chosenSpawns containsObject:[NSNumber numberWithInteger:chosenSpawn]]) {
+            chosenSpawn = ((arc4random() % numFoodSpawns) + 1)*foodSprite.size.width;
+        }
+        [chosenSpawns insertObject:[NSNumber numberWithInteger:chosenSpawn] atIndex:i];
+        // Create the food slightly off-screen along the bottom edge,
+        // and along a random position along the x axis as calculated above
+        foodSprite.position = CGPointMake(chosenSpawn, foodSprite.size.height/2);
+        [self addChild:foodSprite];
+        
+        // Determine speed of the monster
+        //    int minDuration = 1.0;
+        //    int maxDuration = 4.0;
+        //    int rangeDuration = maxDuration - minDuration;
+        //    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+        
+        int foodDuration = 3.0;
+        foodDuration -= (self.level/2);
+        if (foodDuration < 1) {
+            foodDuration = 1;
+        }
+        // Create the actions
+        SKAction* actionMove = [SKAction moveTo:CGPointMake(chosenSpawn, self.frame.size.height-foodSprite.size.height/2) duration:foodDuration];
+        SKAction* actionMoveDone = [SKAction removeFromParent];
+        
+        [foodSprite runAction:[SKAction sequence:@[actionMove, incrementScore, actionMoveDone]]];
+    }
 }
 
 #pragma mark Physics
@@ -255,10 +278,8 @@ static const uint32_t foodCat =  0x1 << 1;
 
     if (self.lastSpawnTimeInterval > 1) {
         self.lastSpawnTimeInterval = 0;
-        int usedPosition = [self addFoodWithoutPosition:-1];
-        if (self.level >= 4) {
-            [self addFoodWithoutPosition:usedPosition];
-        }
+        NSInteger numFood = self.level/4 + 1;
+        [self addFood:numFood];
     }
     
 }

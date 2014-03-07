@@ -22,7 +22,7 @@
         
         self.backgroundColor = [SKColor colorWithRed:108.0/255.0 green:172.0/255.0 blue:212.0/255.0 alpha:1];
         SKLabelNode* nextLevelLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        nextLevelLabel.text = [NSString stringWithFormat:@"LEVEL %d", level];
+        nextLevelLabel.text = [NSString stringWithFormat:@"LEVEL %ld", (long)level];
         nextLevelLabel.fontSize = 40;
         nextLevelLabel.fontColor = [SKColor colorWithRed:240.0/255.0 green:217.0/255.0 blue:192.0/255.0 alpha:1];
         nextLevelLabel.position = CGPointMake(self.size.width/2, self.size.height-self.size.height/3);
